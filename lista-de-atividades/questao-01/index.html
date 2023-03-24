@@ -51,10 +51,20 @@
 
             if (nota1 > 10 || nota2 > 10 || nota1 < 0 || nota2 < 0) {
                 alert("Digite uma nota válida")
+
+
+                document.getElementById('inName').value = ''
+                document.getElementById('inNota1').value = ''
+                document.getElementById('inNota2').value = ''
+
+                return
             }
+
+
             let mediaAluno
             mediaAluno = (nota1 + nota2) / 2
             mediaA.textContent = `Média das notas ${mediaAluno}`
+
 
             if (mediaAluno >= 7) {
                 outMediaAluno.textContent = (`Parabéns ${nome}! Você foi aprovado(a)!`)
