@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 01</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <h1>Programa situação da turma</h1>
+        <hr>
+
+        <label for="inName">Nome Aluno(a):</label>
+        <input type="text" id="inName">
+
+        <label for="inNota1">1º Nota:</label>
+        <input type="number" id="inNota1">
+
+        <label for="inNota2">2º Nota:</label>
+        <input type="number" id="inNota2">
+
+        <button id="mediaAluno">Exibir média aluno</button>
+        <button id="mediaTurma">Exibir média da turma</button>
+
+        <p id="mediaA"></p>
+        <p id="outMediaAluno"></p>
+        <p id="outMediaTurma"></p>
+
+
+
+    </main>
+
+    <script>
+
+        let outMediaAluno = document.getElementById('outMediaAluno')
+        let outMediaTurma = document.getElementById('outMediaTurma')
+        const btnMediaTurma = document.getElementById('mediaTurma')
+        const btnMediaAluno = document.getElementById('mediaAluno')
+
+        let notasTurma = []
+
+
+        btnMediaAluno.addEventListener('click', () => {
+            let nome = document.getElementById('inName').value
+            let nota1 = parseFloat(document.getElementById('inNota1').value)
+            let nota2 = parseFloat(document.getElementById('inNota2').value)
+
+            if (nota1 > 10 || nota2 > 10 || nota1 < 0 || nota2 < 0) {
+                alert("Digite uma nota válida")
+            }
+            let mediaAluno
+            mediaAluno = (nota1 + nota2) / 2
+            mediaA.textContent = `Média das notas ${mediaAluno}`
+
+            if (mediaAluno >= 7) {
+                outMediaAluno.textContent = (`Parabéns ${nome}! Você foi aprovado(a)!`)
+                document.getElementById("outMediaAluno").style.color = "blue";
+            }
+            else {
+                if (mediaAluno >= 3) {
+                    outMediaAluno.textContent = (`Atenção ${nome}, você está em recuperação`)
+                    document.getElementById("outMediaAluno").style.color = "green"
+                } else {
+                    outMediaAluno.textContent = (`Ops ${nome}, você foi reprovado(a)!`)
+                    document.getElementById("outMediaAluno").style.color = "red"
+                }
+            }
+
+            notasTurma.push(mediaAluno)
+            document.getElementById('inName').value = ''
+            document.getElementById('inNota1').value = ''
+            document.getElementById('inNota2').value = ''
+        })
+
+        btnMediaTurma.addEventListener('click', () => {
+            let somaNotas
+            for (let i = 0; i < notasTurma.length; i++) {
+                let mediaTurma = somaNotas / notasTurma.length
+
+                outMediaTurma.textContent = (`${mediaTurma}`)
+            }
+
+
+
+
+        })
+    </script>
+</body>
+
+</html>
